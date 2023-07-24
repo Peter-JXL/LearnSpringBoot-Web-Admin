@@ -1,8 +1,13 @@
 package com.peterjxl.learnspringbootwebadmin.controller;
 
 
+import com.peterjxl.learnspringbootwebadmin.bean.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class TableController {
@@ -14,7 +19,12 @@ public class TableController {
     }
 
     @GetMapping("/dynamic_table")
-    public String dynamic_table(){
+    public String dynamic_table(Model model){
+        List<User> users = Arrays.asList(new User("zhangsan", "123456"),
+                new User("lisi", "123444"),
+                new User("haha", "aaaaa"),
+                new User("hehe", "aaddd"));
+        model.addAttribute("users", users);
         return "table/dynamic_table";
     }
 
