@@ -1,5 +1,11 @@
 server:
   port: 9999
+  undertow:
+    accesslog:
+      dir: ./logs
+  tomcat:
+    accesslog:
+      directory: ./logs2
 spring:
   servlet:
     multipart:
