@@ -16,6 +16,7 @@ spring:
     username: learn
     password: learnpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat,wall
   jdbc:
     template:
       query-timeout: 3 # seconds
