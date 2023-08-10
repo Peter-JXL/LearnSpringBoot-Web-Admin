@@ -1,7 +1,9 @@
 package com.peterjxl.learnspringbootwebadmin.controller;
 
 
+import com.peterjxl.learnspringbootwebadmin.bean.Student;
 import com.peterjxl.learnspringbootwebadmin.bean.User;
+import com.peterjxl.learnspringbootwebadmin.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +20,17 @@ public class IndexController {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    StudentService studentService;
+
+    @ResponseBody
+    @GetMapping("/stu")
+    public Student getStudentById(@RequestParam("id") Integer id) {
+        System.out.println("?????????????????");
+        return studentService.selectStudentById(id);
+    }
+
 
     @ResponseBody
     @GetMapping("/sql")

@@ -37,3 +37,6 @@ spring:
   jdbc:
     template:
       query-timeout: 3 # seconds
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
