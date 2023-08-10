@@ -16,7 +16,24 @@ spring:
     username: learn
     password: learnpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
-    filters: stat,wall
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        reset-enable: false
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+      filters: stat,wall #stat监控统计,wall防火墙
+      filter: #配置具体的filter
+        stat:
+          slow-sql-millis: 1000 #慢查询时间
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false #是否允许删除表
   jdbc:
     template:
       query-timeout: 3 # seconds

@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-@Configuration
+//@Configuration
 public class MyDataSourceConfig {
 
     @Bean
