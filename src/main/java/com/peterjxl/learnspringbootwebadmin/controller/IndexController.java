@@ -1,8 +1,10 @@
 package com.peterjxl.learnspringbootwebadmin.controller;
 
 
+import com.peterjxl.learnspringbootwebadmin.bean.City;
 import com.peterjxl.learnspringbootwebadmin.bean.Student;
 import com.peterjxl.learnspringbootwebadmin.bean.User;
+import com.peterjxl.learnspringbootwebadmin.service.CityService;
 import com.peterjxl.learnspringbootwebadmin.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,11 +26,26 @@ public class IndexController {
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    CityService cityService;
+
     @ResponseBody
     @GetMapping("/stu")
     public Student getStudentById(@RequestParam("id") Integer id) {
-        System.out.println("?????????????????");
         return studentService.selectStudentById(id);
+    }
+
+    @ResponseBody
+    @GetMapping("/city")
+    public City getCityById(@RequestParam("id") Long id) {
+        return cityService.getCityById(id);
+    }
+
+    @ResponseBody
+    @PostMapping("/city")
+    public City saveCity(City city) {
+        cityService.saveCity(city);
+        return city;
     }
 
 
