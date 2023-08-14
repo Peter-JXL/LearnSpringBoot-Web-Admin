@@ -1,5 +1,6 @@
 package com.peterjxl.learnspringbootwebadmin;
 
+import com.peterjxl.learnspringbootwebadmin.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,19 @@ class LearnSpringBootWebAdminApplicationTests {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    UserMapper userMapper;
+
     @Test
     void contextLoads() {
         Long aLong = jdbcTemplate.queryForObject("select count(*) from students", Long.class);
         log.info("记录总数：{}", aLong);
         log.info("数据源类型：{}", dataSource.getClass());
+    }
+
+    @Test
+    void testUserMapper() {
+        log.info("用户信息：{}", userMapper.selectById(1L));
     }
 
 }
