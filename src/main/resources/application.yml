@@ -37,6 +37,12 @@ spring:
   jdbc:
     template:
       query-timeout: 3 # seconds
+  redis:
+    url: redis://localhost:6379/0
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml

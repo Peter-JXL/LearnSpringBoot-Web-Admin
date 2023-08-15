@@ -7,6 +7,8 @@ import com.peterjxl.learnspringbootwebadmin.bean.User;
 import com.peterjxl.learnspringbootwebadmin.service.CityService;
 import com.peterjxl.learnspringbootwebadmin.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,9 @@ public class IndexController {
 
     @Autowired
     CityService cityService;
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
 
     @ResponseBody
     @GetMapping("/stu")
@@ -79,6 +84,12 @@ public class IndexController {
 
     @GetMapping("/main.html")
     public String mainPage(HttpSession session, Model model) {
+        ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
+        String s = opsForValue.get("/main.html");
+        String s1 = opsForValue.get("/sql");
+        model.addAttribute("mainCount", s);
+        model.addAttribute("sqlCount", s1);
+
         return "main";
     }
 }
