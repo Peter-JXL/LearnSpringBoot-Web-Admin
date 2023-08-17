@@ -43,6 +43,15 @@ spring:
       pool:
         max-active: 8
         max-wait: -1ms
+  application:
+    name: boot-admin-client # 服务名
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888
+        instance:
+          prefer-ip: true # 注册时使用IP而不是主机名
+
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
