@@ -53,3 +53,11 @@ management:
     web:
       exposure:
           include: "*" # 以web方式暴露所有监控端点
+  endpoint:
+    health:
+      show-details: always # 显示健康检查的全部细节
+info:
+  appName: boot-admin
+  appVersion: 1.0.0
+  mavenProjectName: @project.name@
+  mavenProjectVersion: @project.version@
